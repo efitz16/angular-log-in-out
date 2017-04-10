@@ -23,3 +23,25 @@
   content: "|";
   padding-right: 0.3em;
 }
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+input.ng-valid.ng-touched {
+  border: 1px solid green;
+}
+
+.ng-invalid button {
+  background: gray;
+}
+
+.ng-valid button {
+  background: blue;
+}
+
+.error {
+  color: red;
+  padding: 5px;
+}
+
