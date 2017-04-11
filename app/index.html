@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" class="no-js" ng-app="myApp"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,12 +13,21 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
+
 </head>
-<body>
+<body ng-app="myApp">
+ <header ng-include="'nav.html'">
+   
+ </header>
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
+  <div>
+    <p ng-show="currentUser" ng-controller="RegistrationController">{{ currentUser.firstname }} is logged in.</p>
+    <a ng-href="#!/view1/login" ng-click="logout()">Logout</a>
+  </div>
 
   <div ng-view></div>
 
@@ -29,6 +38,7 @@
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
+
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="app.js"></script>
@@ -38,6 +48,26 @@
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
   <script src="HomeController.js"></script>
+  <script src="RegistrationController.js"></script>
+  <script src="SuccessController.js"></script>
   <script src="appController.js"></script>
+  <script src="authentication.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCVuWu4ND15rVkAEe2QoE7x3c8G9k-ysNY",
+    authDomain: "ang-registration-practice.firebaseapp.com",
+    databaseURL: "https://ang-registration-practice.firebaseio.com",
+    projectId: "ang-registration-practice",
+    storageBucket: "ang-registration-practice.appspot.com",
+    messagingSenderId: "692081111181"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<!-- AngularFire -->
+<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
 </body>
 </html>

@@ -1,18 +1,19 @@
-<div ng-controller="HomeController">
-<form>
+<p ng-show="message">{{ message }}</p>
+
+<form name="myform" novalidate ng-submit=login()>
 	<fieldset>
 		<div>
     <label>Email
     <input type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true"></label>
-    <p class="error validationerror" ng-show="myForm.email.$invalid && myForm.email.$touched">Please enter valid email</p>
+    <p class="error validationerror" ng-show="myform.email.$invalid && myform.email.$touched">Please enter valid email</p>
     </div>
     <div>
     <label>Password
     <input type="Password" name="password" placeholder="Password" ng-model="user.password" ng-minlength="5" ng-required="true">
     </label>
-    <p class="error validationerror" ng-show="myForm.password.$invalid && myForm.password.$touched">Please enter a password longer than 5 characters</p>
+    <p class="error validationerror" ng-show="myform.password.$invalid && myform.password.$touched">Please enter a password longer than 5 characters</p>
     </div>
 	</fieldset>
-	<button type="submit" ng-disabled="myForm.$invalid">Submit</button>
+	<button type="submit" ng-disabled="myform.$invalid">Submit</button>
 </form>
-</div>
+
