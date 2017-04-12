@@ -7,8 +7,7 @@ var myApp = angular.module('myApp', [
   'myApp.view2',
   'myApp.version',
   'firebase'
-]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+]).config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
   $routeProvider
@@ -22,7 +21,21 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
   })
   .when('/view1/success', {
   	controller: 'SuccessController',
-  	templateUrl: 'success.html'
+  	templateUrl: 'success.html',
+    resolve: {
+      currentAuth: function(Authentication) {
+        return Authentication.myObject.requireAuth();
+      }
+    }
   })
   .otherwise({redirectTo: '/view1/login'});
+}]);
+
+myApp.run(['$rootScope', '$location', function($rootScope, $location){
+  $rootScope.$on('$routeChangeError', function(event, next, previous, error){
+    if (error == 'AUTH_REQUIRED') {
+      $rootScope.message = 'Must be logged in';
+      $location.path('/login');
+    }
+  });
 }]);

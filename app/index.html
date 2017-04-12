@@ -24,9 +24,10 @@
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
-  <div>
-    <p ng-show="currentUser" ng-controller="RegistrationController">{{ currentUser.firstname }} is logged in.</p>
-    <a ng-href="#!/view1/login" ng-click="logout()">Logout</a>
+  <div ng-show="currentUser" ng-controller="RegistrationController">
+    <p>{{ currentUser.firstname }} is logged in.
+    </p>
+    <a ng-click="logout()" ng-href="#!/view1/login">Logout</a>
   </div>
 
   <div ng-view></div>
@@ -49,15 +50,15 @@
   <script src="components/version/interpolate-filter.js"></script>
   <script src="HomeController.js"></script>
   <script src="RegistrationController.js"></script>
-  <script src="SuccessController.js"></script>
   <script src="appController.js"></script>
   <script src="authentication.js"></script>
+  <script src="SuccessController.js"></script>
 
   <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
 <script>
   // Initialize Firebase
   var config = {
-    apiKey: "",
+    apiKey: "AIzaSyCVuWu4ND15rVkAEe2QoE7x3c8G9k-ysNY",
     authDomain: "ang-registration-practice.firebaseapp.com",
     databaseURL: "https://ang-registration-practice.firebaseio.com",
     projectId: "ang-registration-practice",
