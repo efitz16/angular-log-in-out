@@ -19,9 +19,9 @@ var myApp = angular.module('myApp', [
   	controller: 'RegistrationController',
   	templateUrl: 'signup.html'
   })
-  .when('/view1/success', {
-  	controller: 'SuccessController',
-  	templateUrl: 'success.html',
+  .when('/view1/meetings', {
+  	controller: 'MeetingsController',
+  	templateUrl: 'meetings.html',
     resolve: {
       currentAuth: function(Authentication) {
         return Authentication.myObject.requireAuth();
