@@ -7,7 +7,19 @@ var myApp = angular.module('myApp', [
   'myApp.view2',
   'myApp.version',
   'firebase'
-]).config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+]);
+
+myApp.run(['$rootScope', '$location', function($rootScope, $location){
+  $rootScope.$on('$routeChangeError', function(event, next, previous, error){
+    $rootScope.message = "";
+    if (error == 'AUTH_REQUIRED') {
+      $rootScope.message = 'Must be logged in';
+      $location.path('/login');
+    }
+  });
+}]);
+
+myApp.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
   $routeProvider
@@ -19,23 +31,18 @@ var myApp = angular.module('myApp', [
   	controller: 'RegistrationController',
   	templateUrl: 'signup.html'
   })
+  .when('/view1/checkins/:uId/:mId', {
+    controller: 'CheckInsController',
+    templateUrl: 'checkins.html'
+  })
   .when('/view1/meetings', {
   	controller: 'MeetingsController',
   	templateUrl: 'meetings.html',
     resolve: {
       currentAuth: function(Authentication) {
-        return Authentication.myObject.requireAuth();
+        return Authentication.requireAuth();
       }
     }
   })
-  .otherwise({redirectTo: '/view1/login'});
-}]);
-
-myApp.run(['$rootScope', '$location', function($rootScope, $location){
-  $rootScope.$on('$routeChangeError', function(event, next, previous, error){
-    if (error == 'AUTH_REQUIRED') {
-      $rootScope.message = 'Must be logged in';
-      $location.path('/login');
-    }
-  });
+  .otherwise({redirectTo: '/view1/meetings'});
 }]);

@@ -1,6 +1,7 @@
 <p ng-show="message">{{ message }}</p>
 
-<form name="myform" novalidate ng-submit=login()>
+<div class="row">
+<form name="myform" novalidate ng-submit=login() class="col s9">
 	<fieldset>
 		<div>
     <label>Email
@@ -16,4 +17,4 @@
 	</fieldset>
 	<button type="submit" ng-disabled="myform.$invalid">Submit</button>
 </form>
-
+</div>

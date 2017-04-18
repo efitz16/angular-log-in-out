@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        
+<form name="checkInForm" ng-submit="addCheckIn()" class="col s12" novalidate>
+  <div class="textintro">
+    <h1>Check-in</h1>
+    <p ng-show="message">{{ message }}</p>
+  </div>
+  <fieldset>
+    <div>
+    <label>First name
+    <input type="text" name="firstname" placeholder="First name" ng-model="user.firstname" ng-required="true"></label>
+      <p class="error validationerror" ng-show="checkInForm.firstname.$invalid && checkInForm.firstname.$touched">Please enter first name</p>
+    </div>
+    <div>
+    <label>Last name
+    <input type="text" name="lastname" placeholder="Last name" ng-model="user.lastname" ng-required="true"></label>
+    <p class="error validationerror" ng-show="checkInForm.lastname.$invalid && checkInForm.lastname.$touched">Please enter last name</p>
+    </div>
+    <div>
+    <label>Email
+    <input type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true"></label>
+    <p class="error validationerror" ng-show="checkInForm.email.$invalid && checkInForm.email.$touched">Please enter valid email</p>
+    </div>
+  </fieldset>
+    <button type="submit" ng-disabled="checkInForm.$invalid">Check-in</button>
+  </form>
+   </div>
+</div>

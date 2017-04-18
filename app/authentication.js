@@ -19,7 +19,7 @@ myApp.factory('Authentication', ['$rootScope', '$location', '$firebaseAuth', '$f
         user.email,
         user.password
       ).then(function(user) {
-        $location.path('#!/view1/success');
+        $location.path("#!/view1/meetings");
       }).catch(function(error) {
         $rootScope.message = error.message;
       });
